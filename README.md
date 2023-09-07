@@ -1,4 +1,4 @@
-# USDSHARES-API-ALGORITHM
+# USDSHARES-API-ALGORITHM-SOILIDITY-SMART-CONTRACT
 API Smart Contract Reactionary Algorithm for USDSHARES (USDS) Non-Volatile Stablecoin/Stabletoken
 pragma solidity ^0.8.0;
 
