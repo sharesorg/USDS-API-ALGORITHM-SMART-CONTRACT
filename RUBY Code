@@ -24,7 +24,6 @@ if btc_price && bnb_price && eth_price && tron_price && matic_price && cryptosha
   price_change = calculate_price_change(btc_price, bnb_price, eth_price, tron_price, matic_price, cryptoshares_price)
 end
 
-
     @price += price_change
     @price = [@price, 1.0].max
   end
@@ -51,3 +50,4 @@ end
     @price += (@demand * 0.05)
   end
 end
+
