@@ -20,9 +20,10 @@ class USDSHARES
     price_change = 0
 
     # Calculate the price change based on the global rates of different cryptocurrencies
-    if btc_price || bnb_price || eth_price || tron_price || matic_price || cryptoshares_price
-      price_change = calculate_price_change(btc_price, bnb_price, eth_price, tron_price, matic_price, cryptoshares_price)
-    end
+if btc_price && bnb_price && eth_price && tron_price && matic_price && cryptoshares_price
+  price_change = calculate_price_change(btc_price, bnb_price, eth_price, tron_price, matic_price, cryptoshares_price)
+end
+
 
     @price += price_change
     @price = [@price, 1.0].max
@@ -43,7 +44,7 @@ class USDSHARES
   end
 
   def update_demand(total_tokens)
-    demand_change = (total_tokens * 0.1) / 10
+    demand_change = total_tokens * 0.01
 
     # Update the demand and price based on the total tokens
     @demand += demand_change
