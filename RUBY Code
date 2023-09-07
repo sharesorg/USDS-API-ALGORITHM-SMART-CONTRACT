@@ -1,0 +1,52 @@
+# USDS-API-ALGORITHM-SMART-CONTRACT-
+API Smart Contract Reactionary Algorithm for USDSHARES (USDS) Non-Volatile Stablecoin/Stabletoken
+class USDSHARES
+  attr_accessor :price, :supply, :demand
+
+  def initialize
+    @price = 1.0
+    @supply = 0
+    @demand = 0
+  end
+
+  def update_price(global_rates)
+    btc_price = global_rates[:btc]
+    bnb_price = global_rates[:bnb]
+    eth_price = global_rates[:eth]
+    tron_price = global_rates[:tron]
+    matic_price = global_rates[:matic]
+    cryptoshares_price = global_rates[:cryptoshares]
+
+    price_change = 0
+
+    # Calculate the price change based on the global rates of different cryptocurrencies
+    if btc_price || bnb_price || eth_price || tron_price || matic_price || cryptoshares_price
+      price_change = calculate_price_change(btc_price, bnb_price, eth_price, tron_price, matic_price, cryptoshares_price)
+    end
+
+    @price += price_change
+    @price = [@price, 1.0].max
+  end
+
+  def calculate_price_change(btc_price, bnb_price, eth_price, tron_price, matic_price, cryptoshares_price)
+    total_price_change = 0
+
+    # Calculate the total price change based on the individual price changes of different cryptocurrencies
+    total_price_change += (btc_price * 0.01) if btc_price
+    total_price_change += (bnb_price * 0.01) if bnb_price
+    total_price_change += (eth_price * 0.01) if eth_price
+    total_price_change += (tron_price * 0.01) if tron_price
+    total_price_change += (matic_price * 0.01) if matic_price
+    total_price_change += (cryptoshares_price * 0.01) if cryptoshares_price
+
+    total_price_change * 99999
+  end
+
+  def update_demand(total_tokens)
+    demand_change = (total_tokens * 0.1) / 10
+
+    # Update the demand and price based on the total tokens
+    @demand += demand_change
+    @price += (@demand * 0.05)
+  end
+end
