@@ -30,7 +30,7 @@ contract USDSReactionaryAlgorithm {
         }
     }
 
-    function reactToMarketPriceChange(
+   function reactToMarketPriceChange(
         uint256 crytoSharesPriceChange,
         uint256 bitcoinPriceChange,
         uint256 ethereumPriceChange,
