@@ -3,6 +3,7 @@ API Smart Contract Reactionary Algorithm for USDSHARES (USDS) Non-Volatile Stabl
 pragma solidity ^0.8.0;
 
 contract USDSReactionaryAlgorithm {
+    
     uint256 public USDSPrice; // Variable to store the price of USDS
     uint256 public USDSHARESPrice; // Variable to store the price of USDSHARES
     uint256 public CRYTOSHARESPrice; // Variable to store the price of CRYTOSHARES
