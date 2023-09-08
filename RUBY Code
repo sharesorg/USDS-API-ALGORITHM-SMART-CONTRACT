@@ -17,27 +17,18 @@ class USDSHARES
     matic_price = global_rates[:matic]
     cryptoshares_price = global_rates[:cryptoshares]
 
-    price_change = 0
-
-    # Calculate the price change based on the global rates of different cryptocurrencies
-if btc_price && bnb_price && eth_price && tron_price && matic_price && cryptoshares_price
-  price_change = calculate_price_change(btc_price, bnb_price, eth_price, tron_price, matic_price, cryptoshares_price)
-end
+    price_change = calculate_price_change(btc_price, bnb_price, eth_price, tron_price, matic_price, cryptoshares_price)
 
     @price += price_change
     @price = [@price, 1.0].max
   end
 
-  def calculate_price_change(btc_price, bnb_price, eth_price, tron_price, matic_price, cryptoshares_price)
+  def calculate_price_change(*prices)
     total_price_change = 0
 
-    # Calculate the total price change based on the individual price changes of different cryptocurrencies
-    total_price_change += (btc_price * 0.01) if btc_price
-    total_price_change += (bnb_price * 0.01) if bnb_price
-    total_price_change += (eth_price * 0.01) if eth_price
-    total_price_change += (tron_price * 0.01) if tron_price
-    total_price_change += (matic_price * 0.01) if matic_price
-    total_price_change += (cryptoshares_price * 0.01) if cryptoshares_price
+    prices.each do |price|
+      total_price_change += (price * 0.01) if price
+    end
 
     total_price_change * 99999
   end
@@ -45,9 +36,7 @@ end
   def update_demand(total_tokens)
     demand_change = total_tokens * 0.01
 
-    # Update the demand and price based on the total tokens
     @demand += demand_change
     @price += (@demand * 0.05)
   end
 end
-
